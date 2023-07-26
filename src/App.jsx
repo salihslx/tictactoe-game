@@ -6,6 +6,8 @@ import History from './components/History';
 import StatusMessage from './components/StatusMessage';
 
 
+
+
 function App() {
 
   const NEW_GAME = [{squares: Array(9).fill(null), isXNext: false}]
@@ -18,10 +20,12 @@ function App() {
 
  
   
-  const winner = calculateWinner(gamingBoard.squares);
+  const { winner , winningSquares } = calculateWinner(gamingBoard.squares);
 
-  console.log( {historyLength: history.length , currentMove});
- 
+  console.log( {historyLength: history.length , currentMove , winningSquares , winner});
+
+
+  
   
 
   //dirived(computed) value  from  state
@@ -67,17 +71,32 @@ function App() {
     setCurrentMove(move);
   };
 
-  
+  const reset = () =>{
+    setHistory(NEW_GAME);
+    setCurrentMove(0);
+  };
+ 
   
 
   return (
     <div className="app">
+      <h1 className='head'>TIC <span className='text-green'>TAC </span> TOE</h1>
       <StatusMessage winner={winner} gamingBoard={gamingBoard}/>
       <Board
        squares={gamingBoard.squares} 
        handleSquareClick={handleSquareClick}
+        winningSquares={winningSquares}
        />
-       <h2>Current game history</h2>
+
+       <button 
+       type='button' 
+       className={`btn-reset ${currentMove === 0  ? '' : 'active'}`} onClick={reset} >
+         <b>Start new game</b>
+      </button>
+
+       <h2 style={{
+         fontWeight : "normal"
+       }}>Current game history</h2>
        <History history ={history} moveTo ={moveTo} currentMove={currentMove}/>
     </div>
   );

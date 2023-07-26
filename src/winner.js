@@ -1,3 +1,4 @@
+
 export function calculateWinner(squares) {
     const lines = [
       [0, 1, 2],
@@ -13,8 +14,15 @@ export function calculateWinner(squares) {
       const [a, b, c] = lines[i];
       //array distructuring
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+        return {
+            winner: squares[a],
+           winningSquares: lines[i],
+        };
       }
     }
-    return null;
-  }
+    return{ 
+      winner: null,
+       winningSquares: [ ], 
+     
+    };
+    }

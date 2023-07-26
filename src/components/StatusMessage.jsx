@@ -23,8 +23,8 @@ const StatusMessage = ({winner , gamingBoard }) => {
          if(!winner && noMovesleft){
            return( 
                 <React.Fragment>
-                    <span className="text-orange">0</span> and{''} 
-                    <span className="text-green">X</span>  tied
+                    <span className="text-orange">0</span>{' '} and{' '} 
+                    <span className="text-green">X</span>{' '} tied
                 </React.Fragment>
                 );
          }
